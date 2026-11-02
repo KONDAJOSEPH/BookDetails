@@ -1,0 +1,55 @@
+﻿@model IEnumerable<BookDetails.Models.book1_tbl>
+
+@{
+    ViewBag.Title = "Index";
+}
+<center>
+<h1>LIBRARY MANAGEMENT SYSTEM</h1>
+</center>
+<p>
+    @Html.ActionLink("Add Book", "AddBook")
+</p>
+@if (TempData["bookaddsuccess.message"] != null)
+            {
+                <div class="alert alert-success">
+                      <p>TempData</p>
+                </div>
+            }
+
+
+<center>
+<table class="table" border="1" cellpadding="5"  >
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.bookName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookAuthor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookPrice)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.bookName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookAuthor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookPrice)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "editbook", new { id=item.bookid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.bookid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.bookid })
+        </td>
+    </tr>
+}
+
+</table>
+    </center>
